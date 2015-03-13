@@ -2,7 +2,7 @@
 	<extension point="xbmc.addon.repository" name="tvwin Addon Repository">
 		<info compressed="false">https://raw.githubusercontent.com/wapitores/tvwin.repository/master/addon.xml</info>
 		<checksum>http://github.com/Juarrox/palcotv.repository/raw/master/addons.xml.md5</checksum>
-		<datadir zip="true">https://raw.github.com/wapitores/tvwin.repository/tree/master/comprimidos</datadir>
+		<datadir zip="true">https://github.com/wapitores/tvwin.repository/raw/master/comprimidos</datadir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary>actualizacion tvwin</summary>
