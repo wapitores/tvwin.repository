@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>	
+
+	<category label="General">
+		<setting label="Control paternal " type="lsep" />
+   		<setting id="pekes_no" type="bool" label="Activar o desactivar contenido adulto" default="true"/>
+		<setting label="Resolucion personalizada" type="lsep" />
+		<setting id="xmlmaster" type="bool" label="Activar Calidad de la Tv" default="false"/>
+		<setting id="SelectXMLmenu" type="enum" label="Seleccione Calidad:" values="ESTANDAR|BAJA|ALTA|MEDIA" default="DEFAULT" enable="!eq(-1,false)"/>		
+		<setting label="Vídeo intro " type="lsep" />
+		<setting id="ver_intro" type="bool" label="Mostrar al inicio" default="false"/>
+		
+		
+	</category>
+   
+</settings>
