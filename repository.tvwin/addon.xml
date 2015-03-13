@@ -1,5 +1,5 @@
-<addon id="repository.tvwin" name="TvWin Repository" version="1.0.1" provider-name="wapito">
-	<extension point="xbmc.addon.repository" name="tvwin Addon Repository">
+<addon id="repository.tvwin" name="TvWin repository" version="1.0.1" provider-name="wapito">
+	<extension point="xbmc.addon.repository" name="Tvwin Addon Repository">
 		<info compressed="false">https://raw.githubusercontent.com/wapitores/tvwin.repository/master/addons.xml</info>
 		<checksum>https://raw.githubusercontent.com/wapitores/tvwin.repository/master/addons.xml.md5</checksum>
 		<datadir zip="true">https://github.com/wapitores/tvwin.repository/raw/master/comprimidos</datadir>
