@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 #------------------------------------------------------------
 # TvWin - XBMC Add-on by wapo (wapo754@gmail.com)
 # Version 0.2.99 (17.10.2014)
@@ -4467,23 +4467,23 @@ def xml_skin():
             if ver_intro == "true":
                 xbmc.Player(xbmc.PLAYER_CORE_AUTO).play(art + 'intro.mp4')
                 
-        elif SelectXMLmenu == '1':
-            mastermenu = 'http://pastebin.com/raw.php?i=vpWpAmLu'
+        elif SelectXMLmenu == '1': # ALTA 
+            mastermenu = 'http://pastebin.com/raw.php?i=umhZzM9Y'
             plugintools.log("[TvWin.xml_skin: "+SelectXMLmenu)
             # Control para ver la intro de BAJO
             ver_intro = plugintools.get_setting("ver_intro")
             if ver_intro == "true":
                 xbmc.Player(xbmc.PLAYER_CORE_AUTO).play(art + 'intro.mp4')              
             
-        elif SelectXMLmenu == '2':
-            mastermenu = 'http://pastebin.com/raw.php?i=umhZzM9Y'
+        elif SelectXMLmenu == '2': # MEDIA 
+            mastermenu = 'http://pastebin.com/raw.php?i=nLHRcK6c'
             plugintools.log("[TvWin.xml_skin: "+SelectXMLmenu)
             # Control para ver la intro de media
             ver_intro = plugintools.get_setting("ver_intro")
             if ver_intro == "true":
                 xbmc.Player(xbmc.PLAYER_CORE_AUTO).play(art + 'intro.mp4')  
-        elif SelectXMLmenu == '3':# HD
-            mastermenu = 'http://pastebin.com/raw.php?i=nLHRcK6c'
+        elif SelectXMLmenu == '3':# BAJA
+            mastermenu = 'http://pastebin.com/raw.php?i=vpWpAmLu'
             plugintools.log("[TvWin.xml_skin: "+SelectXMLmenu)
             # Control para ver la intro de media
             ver_intro = plugintools.get_setting("ver_intro")
