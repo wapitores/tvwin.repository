@@ -4,13 +4,15 @@ tvwin 1.0 beta
 - Muchísimos errores ;)
 
 tvwin 1.2 beta
- -se ponen logos a cada canal
- -se configura la configuracion de resoluciones integradas al xbmc
+- se ponen logos a cada canal
+- se configura la configuracion de resoluciones integradas al xbmc
 
 tvwin 1.2.3 beta
-se repara
+-se repara
 
 Tvwin 1.3.1
 - se repara scrip para importar libreria de pelisalacarta para resolver enlaces rtmp temporales 
 
 Tvwin 1.3.2
+-se repara
+

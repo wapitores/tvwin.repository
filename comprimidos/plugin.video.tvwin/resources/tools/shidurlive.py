@@ -1,6 +1,6 @@
 ﻿# -*- coding: utf-8 -*-
 #------------------------------------------------------------
-# PalcoTV Regex de Shidurlive
+# tvwin Regex de Shidurlive
 # Version 0.1 (15.10.2014)
 #------------------------------------------------------------
 # License: GPL (http://www.gnu.org/licenses/gpl-3.0.html)
@@ -40,7 +40,7 @@ fanart = 'fanart.jpg'
 
 # Función que guía el proceso de elaboración de la URL original
 def shidurlive(params):
-    plugintools.log("[PalcoTV-0.3.0].shidurlive "+repr(params))
+    plugintools.log("[tvwin-0.3.0].shidurlive "+repr(params))
     url_user = {}
     
     # Construimos diccionario...
@@ -107,7 +107,7 @@ def gethttp_headers(pageurl, referer):
 # Iniciamos protocolo de elaboración de la URL original
 # Capturamos parámetros correctos
 def getparams_shidurlive(url_user, body):
-    plugintools.log("[PalcoTV-0.3.0].getparams_shidurlive " + repr(url_user) )
+    plugintools.log("[tvwin-0.3.0].getparams_shidurlive " + repr(url_user) )
 
     # Construimos el diccionario de 9stream
     streamer = re.compile("'streamer', '([^']*)").findall(body)
