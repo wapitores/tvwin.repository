@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 #------------------------------------------------------------
 # TvWin - XBMC Add-on by wapo (wapo754@gmail.com)
 # Version 0.2.99 (17.10.2014)
@@ -89,9 +89,9 @@ def main_list(params):
     try:
         data = plugintools.read(mastermenu)
     except:
-        mastermenu = 'http://pastebin.com/raw.php?i=aDS8ywdN'
+        mastermenu = 'http://pastebin.com/raw.php?i=EWZ7FnPG'
         data = plugintools.read(mastermenu)
-        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('TvWin', "XML no reconocido...", 3 , art+'icon.png'))    
+        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('TvWin', "Usuario no reconocido...", 3 , art+'icon.png'))    
 
     matches = plugintools.find_multiple_matches(data,'<menu_info>(.*?)</menu_info>')
     for entry in matches:
@@ -4493,24 +4493,24 @@ def xml_skin():
             id_pastebin = plugintools.get_setting("id_pastebin")
             if id_pastebin == "":
                 plugintools.log("[TvWin.xml_skin: No definido")                
-                mastermenu = ''
+                mastermenu = 'http://pastebin.com/raw.php?i=EWZ7FnPG'
             else:                
                 mastermenu = 'http://pastebin.com/raw.php?i=' +id_pastebin
                 plugintools.log("[TvWin.xml_skin: "+mastermenu)
         elif SelectXMLmenu == '5':   # Personalizado
             mastermenu = ''
             if mastermenu == "":
-                plugintools.log("[TvWin.xml_skin_skin: No definido")
+                plugintools.log("[TvWin.xml_skin: No definido")
                 mastermenu = 'http://pastebin.com/raw.php?i=umhZzM9Y'                
                 # Control para ver la intro de TvWin
                 ver_intro = plugintools.get_setting("ver_intro")
                 if ver_intro == "true":
                     xbmc.Player(xbmc.PLAYER_CORE_AUTO).play(art + 'intro.mp4')                
         elif SelectXMLmenu == '6':   # BAJA
-            mastermenu = 'http://pastebin.com/raw.php?i=vpWpAmLu'
+            mastermenu = ''
             if mastermenu == "":
                 plugintools.log("[TvWin.xml_skin: No definido")
-                mastermenu = 'http://pastebin.com/raw.php?i=umhZzM9Y'  # Cargamos WIP                  
+                mastermenu = ''  # Cargamos WIP                  
                 # Control para ver la intro de TvWin
                 ver_intro = plugintools.get_setting("ver_intro")
                 if ver_intro == "true":

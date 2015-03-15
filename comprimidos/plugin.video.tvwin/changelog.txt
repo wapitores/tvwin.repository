@@ -16,3 +16,5 @@ Tvwin 1.3.1
 Tvwin 1.3.2
 -se repara
 
+Tvwin 2.0.1
+-nueva vercion con usuario y repara libreria para canales que se trasmiten con token
