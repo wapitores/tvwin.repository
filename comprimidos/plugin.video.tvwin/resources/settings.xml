@@ -7,7 +7,7 @@
 		<setting label="Resolucion personalizada o activar tu id de usuario" type="lsep" />
 		<setting id="xmlmaster" type="bool" label="Activar Calidad de la Tv O Autentificar Su Usuario" default="false"/>
 		<setting id="SelectXMLmenu" type="enum" label="Seleccione Calidad:" values="ESTANDAR|ALTA|MEDIA|BAJA|USUARIO" default="DEFAULT" enable="!eq(-1,false)"/>		
-		<setting id="id_pastebin" type="text" label="Id De Usuario: " default="" enable="!eq(-3,false)"/>
+		<setting id="id_pastebin" type="text" label="Ingresa tu id de usuario aqui: " default="" enable="!eq(-3,false)"/>
 		<setting label="Vídeo intro " type="lsep" />
 		<setting id="ver_intro" type="bool" label="Mostrar al inicio" default="false"/>
 		
