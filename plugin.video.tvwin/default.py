@@ -91,7 +91,7 @@ def main_list(params):
     except:
         mastermenu = 'http://pastebin.com/raw.php?i=EWZ7FnPG'
         data = plugintools.read(mastermenu)
-        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('TvWin', "Usuario no reconocido...", 3 , art+'icon.png'))    
+        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('TvWin', "Usuario no reconocido...", 3 , art+'b.png'))    
 
     matches = plugintools.find_multiple_matches(data,'<menu_info>(.*?)</menu_info>')
     for entry in matches:
@@ -4483,7 +4483,7 @@ def xml_skin():
             if ver_intro == "true":
                 xbmc.Player(xbmc.PLAYER_CORE_AUTO).play(art + 'intro.mp4')  
         elif SelectXMLmenu == '3':# BAJA
-            mastermenu = 'http://pastebin.com/raw.php?i=vpWpAmLu'
+            mastermenu = 'http://pastebin.com/raw.php?i=9fQ8aGbM'
             plugintools.log("[TvWin.xml_skin: "+SelectXMLmenu)
             # Control para ver la intro de media
             ver_intro = plugintools.get_setting("ver_intro")
@@ -4497,7 +4497,7 @@ def xml_skin():
             else:                
                 mastermenu = 'http://pastebin.com/raw.php?i=' +id_pastebin
                 plugintools.log("[TvWin.xml_skin: "+mastermenu)
-        elif SelectXMLmenu == '5':   # Personalizado
+        elif SelectXMLmenu == '5':   
             mastermenu = ''
             if mastermenu == "":
                 plugintools.log("[TvWin.xml_skin: No definido")
@@ -4506,11 +4506,11 @@ def xml_skin():
                 ver_intro = plugintools.get_setting("ver_intro")
                 if ver_intro == "true":
                     xbmc.Player(xbmc.PLAYER_CORE_AUTO).play(art + 'intro.mp4')                
-        elif SelectXMLmenu == '6':   # BAJA
+        elif SelectXMLmenu == '6':  
             mastermenu = ''
             if mastermenu == "":
                 plugintools.log("[TvWin.xml_skin: No definido")
-                mastermenu = ''  # Cargamos WIP                  
+                mastermenu = ''                    
                 # Control para ver la intro de TvWin
                 ver_intro = plugintools.get_setting("ver_intro")
                 if ver_intro == "true":

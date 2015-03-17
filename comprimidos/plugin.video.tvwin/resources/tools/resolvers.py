@@ -57,7 +57,7 @@ def allmyvideos(params):
             params["url"]=url
             plugintools.log("url= "+url)
             plugintools.play_resolved_url(url)
-            xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('tvwin', "Resolviendo enlace...", 3 , art+'icon.png'))
+            xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('TvWin', "Resolviendo enlace...", 3 , art+'s.png'))
 
 
 def streamcloud(params):
@@ -72,7 +72,7 @@ def streamcloud(params):
 
     # Barra de progreso para la espera de 10 segundos
     progreso = xbmcgui.DialogProgress()
-    progreso.create("tvwin", "Abriendo Streamcloud..." , url )
+    progreso.create("TvWin", "Abriendo Streamcloud..." , url )
 
     i = 13000
     j = 0
@@ -143,7 +143,7 @@ def playedto(params):
         
         if entry.endswith("flv"):
             plugintools.play_resolved_url(entry)
-            xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('tvwin', "Resolviendo enlace...", 3 , art+'icon.png'))            
+            xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('TvWin', "Resolviendo enlace...", 3 , art+'s.png'))            
             params["url"]=entry
             plugintools.log("URL= "+entry)
 
@@ -170,7 +170,7 @@ def vidspot(params):
             params["url"]=url
             plugintools.log("url= "+url)
             plugintools.play_resolved_url(url)
-            xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('tvwin', "Resolviendo enlace...", 3 , art+'icon.png'))
+            xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('TvWin', "Resolviendo enlace...", 3 , art+'s.png'))
 
 
 def vk(params):
@@ -182,7 +182,7 @@ def vk(params):
     data = data.replace("amp;", "")
     
     if "This video has been removed from public access" in data:
-        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('tvwin', "El archivo ya no está disponible", 3 , art+'icon.png'))
+        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('TvWin', "El archivo ya no está disponible", 3 , art+'s.png'))
     else:
         match = plugintools.find_single_match(data, '<param name="flashvars"(.*?)</param>')
         plugintools.log("match= "+match)
@@ -209,7 +209,7 @@ def vk(params):
 
         # Control para el caso en que no se encuentren los parámetros por "Acceso prohibido o restringido"
         if url_sintax == "/video":
-            xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('tvwin', "El archivo ya no está disponible", 3 , art+'icon.png'))
+            xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('TvWin', "El archivo ya no está disponible", 3 , art+'s.png'))
         else:            
             url_1 = url_sintax + '.240.mp4'
             url_extended_1 = plugintools.find_single_match(match, 'url240=(.*?)\&')
@@ -244,7 +244,7 @@ def vk(params):
                     plugintools.log("URL_vk= "+video_urls[i])
                     url = video_urls[i]
                     if selector == "":
-                        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('tvwin', "El archivo ya no está disponible", 3 , art+'icon.png'))
+                        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('TvWin', "El archivo ya no está disponible", 3 , art+'s.png'))
                     else:
                         plugintools.play_resolved_url(url)
 
@@ -258,9 +258,9 @@ def nowvideo(params):
     #data = data.replace("amp;", "")
     
     if "The file is being converted" in data:
-        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('tvwin', "El archivo está en proceso", 3 , art+'icon.png'))
+        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('TvWin', "El archivo está en proceso", 3 , art+'s.png'))
     elif "no longer exists" in data:
-        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('tvwin', "El archivo ha sido borrado", 3 , art+'icon.png'))        
+        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('TvWin', "El archivo ha sido borrado", 3 , art+'s.png'))        
     else:
         #plugintools.log("data= "+data)
         domain = plugintools.find_single_match(data, 'flashvars.domain="([^"]+)')
@@ -280,7 +280,7 @@ def nowvideo(params):
         #plugintools.log("token= "+token)
         
         if video_id == "":
-            xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('tvwin', "Error!", 3 , art+'icon.png'))
+            xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('TvWin', "Error!", 3 , art+'s.png'))
         else:
             #http://www.nowvideo.sx/api/player.api.php?user=undefined&pass=undefined&cid3=undefined&numOfErrors=0&cid2=undefined&key=83%2E47%2E1%2E12%2D8d68210314d70fb6506817762b0d495e&file=b5c8c44fc706f&cid=1
             url = 'http://www.nowvideo.sx/api/player.api.php?user=undefined&pass=undefined&cid3=undefined&numOfErrors=0&cid2=undefined&key=' + token + '&file=' + video_id + '&cid=1'
@@ -301,9 +301,9 @@ def nowvideo(params):
                 print 'body',body
                 url = body[0]
                 plugintools.play_resolved_url(url)
-                xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('tvwin', "Cargando vídeo...", 1 , art+'icon.png'))
+                xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('TvWin', "Cargando vídeo...", 1 , art+'s.png'))
             else:
-                xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('tvwin', "Error!", 3 , art+'icon.png'))                
+                xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('TvWin', "Error!", 3 , art+'s.png'))                
 
          
 ''' En el navegador...
@@ -324,7 +324,7 @@ def tumi(params):
     data = plugintools.read(params.get("url"))
     
     if "Video is processing now" in data:
-        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('tvwin', "El archivo está en proceso", 3 , art+'icon.png'))       
+        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('TvWin', "El archivo está en proceso", 3 , art+'s.png'))       
     else:
         # Vamos a buscar el ID de la página embebida
         matches = plugintools.find_multiple_matches(data, 'add_my_acc=(.*?)\"')
