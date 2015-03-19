@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <addon
-	id="plugin.video.tvwin" version="2.0.02" name="TvWin" provider-name="colaboradores wapo,bigotes,david">
+	id="plugin.video.tvwin" version="2.0.03" name="TvWin" provider-name="wapo colaboradores bigotes,david,fernado">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
         <import addon="plugin.video.youtube" version="3.0.0"/>
