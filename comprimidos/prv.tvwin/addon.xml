@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <addon
   id="pvr.tvwin"
   version="1.0.1"
@@ -17,15 +17,9 @@
     library_windx="TvWin_win32.dll"
     library_android="libKodi_IPTV_Simple.so" />
   <extension point="xbmc.addon.metadata">
-    
-    <summary lang="gl">Complemento PVR do Kodi de soporte á IPTV</summary>
-   
-    <summary lang="zh"></summary>
-    
-    <description lang="zh"></description>
-    
-    <disclaimer lang="tr"></disclaimer>
-    
-    <platform>all</platform>
-  </extension>
+    <summary>prv tvwin</summary>
+		<description>tvwin</description>
+		<platform>all</platform>
+	</extension>
 </addon>
+
