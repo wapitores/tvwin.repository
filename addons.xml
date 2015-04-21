@@ -26,6 +26,37 @@
 	</extension>
 </addon>
 
+<addon
+  id="pvr.tvwin"
+  version="1.0.1"
+  name="Pvr TvWin"
+  provider-name="wapito">
+  <requires>
+    <c-pluff version="0.1"/>
+    <import addon="xbmc.pvr" version="1.9.2"/>
+  </requires>
+  <extension
+    point="xbmc.pvrclient"
+    library_linux="Kodi_IPTV_Simple.pvr"
+    library_osx="Kodi_IPTV_Simple.pvr"
+    library_freebsd="Kodi_IPTV_Simple.pvr"
+    library_wingl="TvWin_win32.dll"
+    library_windx="TvWin_win32.dll"
+    library_android="libKodi_IPTV_Simple.so" />
+  <extension point="xbmc.addon.metadata">
+
+    <summary lang="gl">Complemento PVR do Kodi de soporte á IPTV</summary>
+
+    <summary lang="zh"></summary>
+
+    <description lang="zh"></description>
+
+    <disclaimer lang="tr"></disclaimer>
+
+    <platform>all</platform>
+  </extension>
+</addon>
+
 <addon id="repository.tvwin" name="TvWin Repository" version="1.0.2" provider-name="wapito">
 	<extension point="xbmc.addon.repository" name="tvwin Addon Repository">
 		<info compressed="false">http://raw.github.com/wapitores/tvwin.repository/master/addons.xml</info>

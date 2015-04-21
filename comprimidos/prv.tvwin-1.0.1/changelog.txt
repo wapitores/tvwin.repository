@@ -1,0 +1,2 @@
+v1.0.1
+- change library name to Kodi
