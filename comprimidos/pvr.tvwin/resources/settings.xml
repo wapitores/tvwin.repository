@@ -3,9 +3,12 @@
   <!-- M3U -->
   <category label="30010">
     <setting id="sep1" label="30010" type="lsep"/> 
-    <setting id="m3uPathType" type="enum" label="30000" lvalues="30002|30002" default="2" />
-    <setting id="m3uUrl2" type="text" label="standar"default="http://pastebin.com/raw.php?i=nkm8L1Ka" visible="eq(-1,0)"/>
-    <setting id="m3uUrl" type="text" label="media" default="http://pastebin.com/raw.php?i=ksTjqypL" visible="eq(-2,1)"/>
+    <setting id="m3uPathType" type="enum" label="30000" lvalues="30001|30002" default="1" />
+    <setting id="m3uPath" type="text" label="Instrucciones de uso" default="" visible="eq(-1,0)"/>
+    <setting id="m3uUrl" type="text" label="30012" default="http://tvwin.net78.net/81A4C18AC4/Resolucion/estandar" visible="eq(-2,1)"/>
+    <setting id="m3uCache" type="bool" label="30025" default="false" visible="eq(-3,1)"/>
+    <setting id="startNum" type="number" label="30013" default="1" />
+
    
   </category>
 
@@ -25,6 +28,6 @@
     <setting id="sep3" label="30030" type="lsep"/>
     <setting id="logoPathType" type="enum" label="30000" lvalues="30001|30002" default="1" />
     <setting id="logoPath" type="folder" label="30031" default="" visible="eq(-1,0)"/>
-    <setting id="logoBaseUrl" type="text" label="30032" default="" visible="eq(-2,1)"/>
+    <setting id="logoBaseUrl" type="text" label="30032" default="http://tvwin.net78.net/B57ED5EA0F5BD2BA5CF53B29AB/" visible="eq(-2,1)"/>
   </category>
 </settings>
