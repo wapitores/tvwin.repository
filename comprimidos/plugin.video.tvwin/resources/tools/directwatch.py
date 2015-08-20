@@ -24,6 +24,11 @@ import xbmcplugin
 import re,urllib,urllib2,sys
 import plugintools,ioncube
 
+addonName           = xbmcaddon.Addon().getAddonInfo("name")
+addonVersion        = xbmcaddon.Addon().getAddonInfo("version")
+addonId             = xbmcaddon.Addon().getAddonInfo("id")
+addonPath           = xbmcaddon.Addon().getAddonInfo("path")
+
 home = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.palcotv/', ''))
 tools = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.palcotv/resources/tools', ''))
 addons = xbmc.translatePath(os.path.join('special://home/addons/', ''))
@@ -38,7 +43,8 @@ fanart = 'fanart.jpg'
 
 # Función que guía el proceso de elaboración de la URL original
 def directwatch(params):
-    plugintools.log("[PalcoTV-0.3.0].directwatch "+repr(params))
+    plugintools.log('[%s %s].Regex directwatch %s' % (addonName, addonVersion, repr(params)))
+    
     url_user = {}
     url_user["token"]='KUidj872jf9867123444'
     url_user["rtmp"]='rtmp://watch.direct2watch.com/direct2watch'
@@ -82,9 +88,10 @@ def directwatch(params):
 
 
 def nstr(pageurl,ref,body):
-    plugintools.log("[PalcoTV 0.3.0].nstr")
+    plugintools.log('[%s %s].Regex nstr' % (addonName, addonVersion))
     print 'pageurl',pageurl
-    # http://www.direct2watch.com/embedplayer.php?width=653&height=410&channel=14&autoplay=true
+    # http://www.direct2watch.com/embedplayer.php?width=653&height=410&channel=14&autoplay=true
+
     p1 = re.compile(ur'channel=?\'?"?([^\'"\&,;]+)')
     p2 = re.compile(ur'width=?\'?"?([^\'"\&,;]+)')
     p3 = re.compile(ur'height=?\'?"?([^\'"\&,;]+)')
@@ -110,18 +117,16 @@ def nstr(pageurl,ref,body):
 
 		
 def curl_frame(url,ref,body):
-	request_headers=[];
-	request_headers.append(["User-Agent","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.65 Safari/537.31"])
-	request_headers.append(["Referer",ref])
-	body,response_headers=plugintools.read_body_and_headers(url, headers=request_headers);
-	return body
+    request_headers=[];
+    request_headers.append(["User-Agent","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.65 Safari/537.31"])
+    request_headers.append(["Referer",ref])
+    body,response_headers=plugintools.read_body_and_headers(url, headers=request_headers);
+    return body
 
 
 
 # Vamos a hacer una llamada al pageUrl
 def gethttp_headers(pageurl, referer):
-    plugintools.log("[PalcoTV-0.3.0].gethttp_headers")
-      
     request_headers=[]
     request_headers.append(["User-Agent","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.65 Safari/537.31"])
     request_headers.append(["Referer",referer])

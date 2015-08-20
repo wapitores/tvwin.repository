@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #------------------------------------------------------------
-# PalcoTV - XBMC Add-on by Juarrox (juarrox@gmail.com)
-# Version 0.2.9 (18.07.2014)
+# Actualizador de PalcoTV
+# Version 0.1 (22.04.2015)
 #------------------------------------------------------------
 # License: GPL (http://www.gnu.org/licenses/gpl-3.0.html)
 # Gracias a la librería plugintools de Jesús (www.mimediacenter.info)
@@ -23,6 +23,11 @@ import xbmcplugin
 import plugintools
 
 
+addonName           = xbmcaddon.Addon().getAddonInfo("name")
+addonVersion        = xbmcaddon.Addon().getAddonInfo("version")
+addonId             = xbmcaddon.Addon().getAddonInfo("id")
+addonPath           = xbmcaddon.Addon().getAddonInfo("path")
+
 libdir = xbmc.translatePath(os.path.join('special://xbmc/system/players/dvdplayer/', ''))
 home = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.palcotv/', ''))
 tools = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.palcotv/resources/tools', ''))
@@ -36,8 +41,8 @@ icon = art + 'icon.png'
 fanart = 'fanart.jpg'
 
 
-def bajalib(params, platform, libdir, filename):
-    plugintools.log("[PalcoTV-0.2.99].bajalib "+platform)
+def bajalib(params, platform, libdir, filename):    
+    plugintools.log('[%s %s] Descarga de librtmp %s' % (addonName, addonVersion, platform))    
 
     url = "https://dl.dropboxusercontent.com/u/8036850/librtmp/librtmp-" + platform + ".zip"
 
@@ -82,9 +87,8 @@ def bajalib(params, platform, libdir, filename):
 
 
 
-def get_system_platform(params):
-    plugintools.log("[PalcoTV-0.2.99].get_system_platform " + repr(params))
-
+def get_system_platform(params):    
+    plugintools.log('[%s %s] Obteniendo información del sistema... %s' % (addonName, addonVersion, repr(params)))
    
     if xbmc.getCondVisibility( "system.platform.ipad" ):
         platform = "linux"

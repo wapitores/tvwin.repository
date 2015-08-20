@@ -26,12 +26,12 @@ import json
 import math
 
 
-home = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.palcotv/', ''))
-tools = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.palcotv/resources/tools', ''))
+home = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.arena+/', ''))
+tools = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.arena+/resources/tools', ''))
 addons = xbmc.translatePath(os.path.join('special://home/addons/', ''))
-resources = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.palcotv/resources', ''))
-art = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.palcotv/art', ''))
-tmp = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.palcotv/tmp', ''))
+resources = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.arena+/resources', ''))
+art = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.arena+/art', ''))
+tmp = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.arena+/tmp', ''))
 playlists = xbmc.translatePath(os.path.join('special://home/addons/playlists', ''))
 
 icon = art + 'icon.png'
@@ -92,8 +92,6 @@ def dailym_getvideo(url):
             plugintools.log("video_id= "+video_id)
             return video_id
 
-        
-
 def dailym_pl(params):
     plugintools.log("dailym_pl "+repr(params))
 
@@ -116,4 +114,3 @@ def dailym_pl(params):
         print 'url',url
         plugintools.add_item(action="play", title=title, url=url, folder = False, fanart='http://image-parcours.copainsdavant.com/image/750/1925508253/4094834.jpg',thumbnail=thumbnail,isPlayable = True)
             
-

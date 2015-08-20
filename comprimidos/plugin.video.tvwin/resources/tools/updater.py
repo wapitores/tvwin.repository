@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #------------------------------------------------------------
-# PalcoTV Updater v0.2 (21.10.2014)
-# Version 0.3.0 (18.10.2014)
+# PalcoTV Updater
+# v0.2 (21.10.2014)
 #------------------------------------------------------------
 # License: GPL (http://www.gnu.org/licenses/gpl-3.0.html)
 # Gracias a la librería plugintools de Jesús (www.mimediacenter.info)
@@ -14,6 +14,7 @@ import urllib2
 import re
 import shutil
 import time
+import zipfile
 
 import xbmc
 import xbmcgui
@@ -23,6 +24,12 @@ import xbmcplugin
 import plugintools
 
 
+
+addonName           = xbmcaddon.Addon().getAddonInfo("name")
+addonVersion        = xbmcaddon.Addon().getAddonInfo("version")
+addonId             = xbmcaddon.Addon().getAddonInfo("id")
+addonPath           = xbmcaddon.Addon().getAddonInfo("path")
+
 home = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.palcotv/', ''))
 tools = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.palcotv/resources/tools', ''))
 addons = xbmc.translatePath(os.path.join('special://home/addons/', ''))
@@ -31,14 +38,15 @@ art = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.palcot
 tmp = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.palcotv/tmp', ''))
 playlists = xbmc.translatePath(os.path.join('special://home/addons/playlists', ''))
 
+
 icon = art + 'icon.png'
 fanart = 'fanart.jpg'
 
 
 
 # Comprobamos qué versión es la más reciente
-def check_update(params):
-    plugintools.log("[PalcoTV-0.3.0].check_update "+repr(params))
+def check_update(params):    
+    plugintools.log('[%s %s] check_update %s' % (addonName, addonVersion, repr(params)))     
 
     data = plugintools.read( params.get("url") )
     #plugintools.log("data= "+data)
@@ -67,7 +75,7 @@ def check_update(params):
         
         if title_low.find("palcotv") >= 0:
             f = open(home + 'default.py', 'r')
-            filename = 'plugin.video.palcotv-wip-' + last_update + '.zip'
+            filename = 'plugin.video.palcotv-wip-wip-' + last_update + '.zip'
             actualizar = plugintools.read("http://pastebin.com/raw.php?i=q0aiK6ck")
             plugintools.log("version para actualizar= "+actualizar)
             actualizar = actualizar.strip()
@@ -309,9 +317,8 @@ def check_update(params):
              
 
 
-def update_file(params):
-    plugintools.log("[PalcoTV-0.3.0].Update_now "+repr(params))
-
+def update_file(params):    
+    plugintools.log('[%s %s] Update_now %s' % (addonName, addonVersion, repr(params))) 
 
     # Iniciamos barra de progreso BG durante la actualización
     progreso = xbmcgui.DialogProgressBG()
@@ -357,8 +364,9 @@ def update_file(params):
         xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('PalcoTV', "Actualización completada", 3 , art+'icon.png'))
 
 
-def update_palco(params):
-    plugintools.log("[PalcoTV-0.3.0].update_palco "+repr(params))
+def update_palco(params):    
+    plugintools.log('[%s %s] Actualizando PalcoTV... %s' % (addonName, addonVersion, repr(params))) 
+    
     xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('PalcoTV', "Espere...", 3 , art+'icon.png'))
   
     local_filename = params.get("extra")
@@ -396,7 +404,7 @@ class ziptools:
 
     def extract(self, file, dir, params):
         plugintools.log("file=%s" % file)
-        dir = addons
+        #dir = addons
         
         if not dir.endswith(':') and not os.path.exists(dir):
             os.mkdir(dir)
@@ -454,8 +462,8 @@ class ziptools:
  
 
       
-def parser_title(title):
-    plugintools.log("[PalcoTV-0.3.0].parser_title " + title)
+def parser_title(title):    
+    plugintools.log('[%s %s] parser_title %s' % (addonName, addonVersion, title))     
 
     cyd = title
 

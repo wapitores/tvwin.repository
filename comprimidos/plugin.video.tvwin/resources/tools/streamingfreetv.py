@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #------------------------------------------------------------
-# PalcoTV Regex de castalba
+# Regex de Streamingfreetv para PalcoTV
 # Version 0.1 (17.10.2014)
 #------------------------------------------------------------
 # License: GPL (http://www.gnu.org/licenses/gpl-3.0.html)
@@ -24,6 +24,10 @@ import xbmcplugin
 import plugintools
 import json
 
+addonName           = xbmcaddon.Addon().getAddonInfo("name")
+addonVersion        = xbmcaddon.Addon().getAddonInfo("version")
+addonId             = xbmcaddon.Addon().getAddonInfo("id")
+addonPath           = xbmcaddon.Addon().getAddonInfo("path")
 
 home = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.palcotv/', ''))
 tools = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.palcotv/resources/tools', ''))
@@ -33,12 +37,13 @@ art = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.palcot
 tmp = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.palcotv/tmp', ''))
 playlists = xbmc.translatePath(os.path.join('special://home/addons/playlists', ''))
 
+
 icon = art + 'icon.png'
 fanart = 'fanart.jpg'
 
 
 def streamingfreetv(params):
-    plugintools.log("[PalcoTV-0.3.0].streamingfreetv "+repr(params))
+    plugintools.log('[%s %s].Regex Streamingfreetv %s' % (addonName, addonVersion, repr(params)))
 
     url_user = {}
     
@@ -98,8 +103,7 @@ def streamingfreetv(params):
     
  
 # Vamos a hacer una llamada a la página que nos dará el token
-def gethttp_headers(pageurl):
-      
+def gethttp_headers(pageurl):      
     request_headers=[]
     request_headers.append(["User-Agent","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.65 Safari/537.31"])
     request_headers.append(["Referer", pageurl])
@@ -109,7 +113,6 @@ def gethttp_headers(pageurl):
 
 	
 def gethttp_referer_headers(url_user):
-
     pageurl = url_user.get("pageurl")
     referer = url_user.get("referer")
     print 'referer',referer

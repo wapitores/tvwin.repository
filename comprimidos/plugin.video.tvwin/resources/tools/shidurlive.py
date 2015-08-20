@@ -1,6 +1,6 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 #------------------------------------------------------------
-# tvwin Regex de Shidurlive
+# Regex de Shidurlive para PalcoTV
 # Version 0.1 (15.10.2014)
 #------------------------------------------------------------
 # License: GPL (http://www.gnu.org/licenses/gpl-3.0.html)
@@ -25,13 +25,20 @@ import plugintools
 import json
 
 
-home = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.tvwin/', ''))
-tools = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.tvwin/resources/tools', ''))
+
+addonName           = xbmcaddon.Addon().getAddonInfo("name")
+addonVersion        = xbmcaddon.Addon().getAddonInfo("version")
+addonId             = xbmcaddon.Addon().getAddonInfo("id")
+addonPath           = xbmcaddon.Addon().getAddonInfo("path")
+
+home = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.palcotv/', ''))
+tools = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.palcotv/resources/tools', ''))
 addons = xbmc.translatePath(os.path.join('special://home/addons/', ''))
-resources = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.tvwin/resources', ''))
-art = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.tvwin/art', ''))
-tmp = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.tvwin/tmp', ''))
+resources = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.palcotv/resources', ''))
+art = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.palcotv/art', ''))
+tmp = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.palcotv/tmp', ''))
 playlists = xbmc.translatePath(os.path.join('special://home/addons/playlists', ''))
+
 
 icon = art + 'icon.png'
 fanart = 'fanart.jpg'
@@ -40,7 +47,7 @@ fanart = 'fanart.jpg'
 
 # Función que guía el proceso de elaboración de la URL original
 def shidurlive(params):
-    plugintools.log("[tvwin-0.3.0].shidurlive "+repr(params))
+    plugintools.log('[%s %s].Regex Shidurlive %s' % (addonName, addonVersion, repr(params))) 
     url_user = {}
     
     # Construimos diccionario...
@@ -80,7 +87,7 @@ def shidurlive(params):
     body = gethttp_headers(pageurl, referer)
     plugintools.log("body= "+body)
 
-    #src=http://www.shidurlive.com/stream/4e7a51334e5463304e7a59324f4459794e6d59334d445a6a4e7a55334d773d3d/5864f9cc009c
+    #src=http://www.shidurlive.com/stream/4e6a51324f54637a4e6a4d325a6a63324e6a55334d6a63354d7a453d/706c381d1202    
     src = re.compile('src=\"(.*?)\"').findall(body)
     print 'src',src
     url_user["pageurl"]=src[0]
@@ -107,7 +114,7 @@ def gethttp_headers(pageurl, referer):
 # Iniciamos protocolo de elaboración de la URL original
 # Capturamos parámetros correctos
 def getparams_shidurlive(url_user, body):
-    plugintools.log("[tvwin-0.3.0].getparams_shidurlive " + repr(url_user) )
+    plugintools.log('[%s %s] getparams_shidurlive %s' % (addonName, addonVersion, repr(url_user))) 
 
     # Construimos el diccionario de 9stream
     streamer = re.compile("'streamer', '([^']*)").findall(body)

@@ -2,24 +2,7 @@
 #---------------------------------------------------------------------------
 # Plugin Tools v1.0.8
 #---------------------------------------------------------------------------
-# License: GPL (http://www.gnu.org/licenses/gpl-3.0.html)
-# Based on code from youtube, parsedom and pelisalacarta addons
-# Author: 
-# Jesús
-# tvalacarta@gmail.com
-# http://www.mimediacenter.info/plugintools
-#---------------------------------------------------------------------------
 # Changelog:
-# 1.0.0
-# - First release
-# 1.0.1
-# - If find_single_match can't find anything, it returns an empty string
-# - Remove addon id from this module, so it remains clean
-# 1.0.2
-# - Added parameter on "add_item" to say that item is playable
-# 1.0.3
-# - Added direct play
-# - Fixed bug when video isPlayable=True
 # 1.0.4
 # - Added get_temp_path, get_runtime_path, get_data_path
 # - Added get_setting, set_setting, open_settings_dialog and get_localized_string
@@ -61,8 +44,13 @@ MOVIES = "movies"
 TV_SHOWS = "tvshows"
 SEASONS = "seasons"
 EPISODES = "episodes"
+MUSIC = "music"
+TV = "tvchannels"
 OTHER = "other"
+BIGLIST = "biglist"
 
+# Skin Confluence
+# List = 50, Full list = 51, Thumb = 500, Poster = 501, Posterwrap = 508, Info del medio 2 = 503, Info del medio 1 = 504, Media 4 = 515, Ancho = 505, Music Info = 511, AddoninfoList = 550, AddonThumbList = 551, LiveTV = 560
 # Suggested view codes for each type from different skins (initial list thanks to xbmcswift2 library)
 ALL_VIEW_CODES = {
     'list': {
@@ -71,6 +59,7 @@ ALL_VIEW_CODES = {
         'skin.droid': 50, # List
         'skin.quartz': 50, # List
         'skin.re-touched': 50, # List
+		'skin.titan': 50,
     },
     'thumbnail': {
         'skin.confluence': 500, # Thumbnail
@@ -78,20 +67,25 @@ ALL_VIEW_CODES = {
         'skin.droid': 51, # Big icons
         'skin.quartz': 51, # Big icons
         'skin.re-touched': 500, #Thumbnail
+		'skin.titan': 511, #Thumbs
     },
     'movies': {
-        'skin.confluence': 500, # Thumbnail 515, # Media Info 3
+        'skin.confluence': 508,  # Media info 3 (515), Movies (508)       
         'skin.aeon.nox': 500, # Wall
         'skin.droid': 51, # Big icons
         'skin.quartz': 52, # Media info
         'skin.re-touched': 500, #Thumbnail
+        'skin.neon': 588, # Multiplex
+		'skin.titan': 52, #HorizontalPanel
     },
     'tvshows': {
-        'skin.confluence': 500, # Thumbnail 515, # Media Info 3
+        'skin.confluence': 515, # Thumbnail 515, # Media Info 3
         'skin.aeon.nox': 500, # Wall
         'skin.droid': 51, # Big icons
         'skin.quartz': 52, # Media info
         'skin.re-touched': 500, #Thumbnail
+        'skin.neon': 57, # Panel Landscape 
+		'skin.titan': 512, #ThumbsDetails		
     },
     'seasons': {
         'skin.confluence': 50, # List
@@ -99,6 +93,8 @@ ALL_VIEW_CODES = {
         'skin.droid': 50, # List
         'skin.quartz': 52, # Media info
         'skin.re-touched': 50, # List
+		'skin.titan': 50, # 53_PanelDetails
+
     },
     'episodes': {
         'skin.confluence': 504, # Media Info
@@ -106,8 +102,18 @@ ALL_VIEW_CODES = {
         'skin.droid': 50, # List
         'skin.quartz': 52, # Media info
         'skin.re-touched': 550, # Wide
+		'skin.titan': 514, #PosterShift
     },
+    'biglist': {
+        'skin.confluence': 51, # Big list
+        'skin.aeon.nox': 518, # NO DEFINIDO. BUSCAR CÓDIGO!
+        'skin.droid': 50, # NO DEFINIDO. BUSCAR CÓDIGO!
+        'skin.quartz': 52, # NO DEFINIDO. BUSCAR CÓDIGO!
+        'skin.re-touched': 550, # NO DEFINIDO. BUSCAR CÓDIGO!
+		'skin.titan': 514, # NO DEFINIDO. BUSCAR CÓDIGO!
+    },     
 }
+
 
 # Write something on XBMC log
 def log(message):
@@ -279,6 +285,7 @@ def read_body_and_headers(url, post=None, headers=[], follow_redirects=False, ti
         except:
             import sys
             for line in sys.exc_info():
+                handle=urlopen(req)            
                 _log( "%s" % line )
     
     # Actualiza el almacén de cookies
@@ -322,7 +329,7 @@ def read_body_and_headers(url, post=None, headers=[], follow_redirects=False, ti
     fin = time.clock()
     _log("read_body_and_headers Downloaded in %d seconds " % (fin-inicio+1))
     _log("read_body_and_headers body="+data)
-
+	
     return data,returnheaders
 
 class NoRedirectHandler(urllib2.HTTPRedirectHandler):
@@ -343,7 +350,35 @@ def find_multiple_matches(text,pattern):
     matches = re.findall(pattern,text,re.DOTALL)
 
     return matches
+	
+def find_multiple_matches_multi(text,pattern):
+    _log("find_multiple_matches pattern="+pattern)
+    
+    matches = re.findall(pattern,text, re.MULTILINE)
 
+    return matches	
+	
+def find_multiple_matches_multi_multi(text,pattern):
+    _log("find_multiple_matches pattern="+pattern)
+    
+    matches = re.findall(pattern,text, re.MULTILINE|re.DOTALL)
+
+    return matches
+
+import htmlentitydefs
+import re
+
+pattern = re.compile("&(\w+?);")
+
+def html_entity_decode_char(m, defs=htmlentitydefs.entitydefs):
+    try:
+        return defs[m.group(1)]
+    except KeyError:
+        return m.group(0)
+
+def html_entity_decode(string):
+    return pattern.sub(html_entity_decode_char, string)
+	
 # Parse string and extracts first match as a string
 def find_single_match(text,pattern):
     _log("find_single_match pattern="+pattern)
@@ -357,12 +392,12 @@ def find_single_match(text,pattern):
 
     return result
 
-def add_item( action="" , title="" , plot="" , url="" , thumbnail="" , fanart="" , show="" , episode="" , extra="", page="", info_labels = None, isPlayable = False , folder=True ):
+def add_item( action="" , title="" , plot="" , url="" , thumbnail="" , fanart="" , show="" , episode="" , extra="", page="", info_labels = "", isPlayable = False , folder=True ):
     _log("add_item action=["+action+"] title=["+title+"] url=["+url+"] thumbnail=["+thumbnail+"] fanart=["+fanart+"] show=["+show+"] episode=["+episode+"] extra=["+extra+"] page=["+page+"] isPlayable=["+str(isPlayable)+"] folder=["+str(folder)+"]")
 
     listitem = xbmcgui.ListItem( title, iconImage="DefaultVideo.png", thumbnailImage=thumbnail )
     if info_labels is None:
-        info_labels = { "Title" : title, "FileName" : title, "Plot" : plot }
+        info_labels = { "Title" : title, "FileName" : title, "Plot" : plot }        
     listitem.setInfo( "video", info_labels )
 
     if fanart!="":
@@ -393,10 +428,11 @@ def close_item_list():
     xbmcplugin.endOfDirectory(handle=int(sys.argv[1]), succeeded=True)
 
 def play_resolved_url(url):
-    _log("play_resolved_url ["+url+"]")
+    #_log("play_resolved_url ["+url+"]")
 
     listitem = xbmcgui.ListItem(path=url)
     listitem.setProperty('IsPlayable', 'true')
+	
     return xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, listitem)
 
 def direct_play(url):
@@ -486,9 +522,14 @@ def get_localized_string(code):
     _log("get_localized_string code="+str(code))
 
     dev = __language__(code)
+    print dev
 
     try:
         dev = dev.encode("utf-8")
+	#data=body.encode("iso-8859-16")
+	#data=unicode(body.decode("utf-8"),"iso-8859-16")
+	#s = stripped.encode("iso 8859-16")
+	#s = unicode( s, "iso-8859-16" )
     except:
         pass
 
@@ -538,7 +579,6 @@ def selector(option_list,title="Select one"):
 
     dia = xbmcgui.Dialog()
     selection = dia.select(title,option_list)
-
     return selection
 
 def set_view(view_mode, view_code=0):
@@ -557,6 +597,16 @@ def set_view(view_mode, view_code=0):
     elif view_mode==EPISODES:
         _log("set_view content is episodes")
         xbmcplugin.setContent( int(sys.argv[1]) ,"episodes" )
+    elif view_mode==TV:
+        _log("set_view content is channels")
+        xbmcplugin.setContent( int(sys.argv[1]) ,"channels" )
+    elif view_mode==MUSIC:
+        _log("set_view content is music")
+        xbmcplugin.setContent( int(sys.argv[1]) ,"music" )
+    elif view_mode==BIGLIST:
+        _log("set_view content is biglist")
+        xbmcplugin.setContent( int(sys.argv[1]) ,"biglist" )        
+      
 
     # Reads skin name
     skin_name = xbmc.getSkinDir()
@@ -585,3 +635,52 @@ if addon_id=="":
 
 __settings__ = xbmcaddon.Addon(id=addon_id)
 __language__ = __settings__.getLocalizedString
+
+
+def modo_vista(show):
+
+    if show == "":
+        show = "list"
+    elif show == "0":
+        show = "movies"
+    elif show == "1":
+        show = "seasons"
+    elif show == "2":
+        show = "fanart"
+    elif show == "3":
+        show = "list"
+    elif show == "4":
+        show = "thumbnail"
+    elif show == "5":
+        show = "movies"
+    elif show == "6":
+        show = "tvshows"
+    elif show == "7":
+        show = "episodes"
+    elif show == "8":
+        show = "biglist"         
+
+    if show == "music":        
+        set_view(THUMBNAIL)
+    elif show == "series":
+        set_view(THUMBNAIL)
+    elif show == "tvshows":
+        set_view(THUMBNAIL)
+    elif show == "thumbnail":
+        set_view(THUMBNAIL)
+    elif show == "movies":
+        set_view(THUMBNAIL)
+    elif show == "list":
+        set_view(LIST)
+    elif show == "seasons":
+        set_view(THUMBNAIL)
+    elif show == "episodes":
+        set_view(THUMBNAIL)
+    elif show == "tvshows":
+        set_view(TTHUMBNAIL)
+    elif show == "biglist":
+        set_view(THUMBNAIL)
+    else:
+        set_view(LIST)
+
+

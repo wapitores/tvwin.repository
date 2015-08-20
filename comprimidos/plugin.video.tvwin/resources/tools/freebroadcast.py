@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #------------------------------------------------------------
-# PalcoTV - XBMC Add-on by Juarrox (juarrox@gmail.com)
-# Version 0.2.9 (18.07.2014)
+# Regex de Freebroadcast para PalcoTV
+# Version 0.1 (18.07.2014)
 #------------------------------------------------------------
 # License: GPL (http://www.gnu.org/licenses/gpl-3.0.html)
 # Gracias a la librería plugintools de Jesús (www.mimediacenter.info)
@@ -25,6 +25,11 @@ import plugintools
 import json
 
 
+addonName           = xbmcaddon.Addon().getAddonInfo("name")
+addonVersion        = xbmcaddon.Addon().getAddonInfo("version")
+addonId             = xbmcaddon.Addon().getAddonInfo("id")
+addonPath           = xbmcaddon.Addon().getAddonInfo("path")
+
 home = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.palcotv/', ''))
 tools = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.palcotv/resources/tools', ''))
 addons = xbmc.translatePath(os.path.join('special://home/addons/', ''))
@@ -33,13 +38,14 @@ art = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.palcot
 tmp = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.palcotv/tmp', ''))
 playlists = xbmc.translatePath(os.path.join('special://home/addons/playlists', ''))
 
+
 icon = art + 'icon.png'
 fanart = 'fanart.jpg'
 
 
 # Función que guía el proceso de elaboración de la URL original
 def freebroadcast(params):
-    plugintools.log("[PalcoTV-0.3.0].freebroadcast "+repr(params))
+    plugintools.log('[%s %s].Regex Freebroadcast %s' % (addonName, addonVersion, repr(params)))    
     url_user = {}
     
     # Construimos diccionario...
@@ -90,8 +96,7 @@ def freebroadcast(params):
 
      
 # Vamos a hacer una llamada al pageUrl
-def gethttp_headers(pageurl, referer):
-      
+def gethttp_headers(pageurl, referer):      
     request_headers=[]
     request_headers.append(["User-Agent","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.65 Safari/537.31"])
     # request_headers.append(["Referer",referer])
@@ -104,8 +109,7 @@ def gethttp_headers(pageurl, referer):
 # Iniciamos protocolo de elaboración de la URL original
 # Capturamos parámetros correctos
 def getparams_freebroadcast(url_user, body):
-    plugintools.log("[PalcoTV-0.3.0].getparams_freebroadcast " + repr(url_user) )
-
+    plugintools.log('[%s %s].Regex cast247 %s' % (addonName, addonVersion, repr(url_user)))
     # Construimos el diccionario de 9stream
     entry = plugintools.find_single_match(body, 'setStream(token) {(.*?)}')
     ip = re.compile("streamer', \'(.*?)\'").findall(body)   
@@ -116,7 +120,7 @@ def getparams_freebroadcast(url_user, body):
 
 # Vamos a capturar el playpath
 def getfile_freebroadcast(url_user, decoded, body):
-    plugintools.log("PalcoTV getfile_freebroadcast( "+repr(url_user))
+    plugintools.log('[%s %s].Regex cast247 %s' % (addonName, addonVersion, repr(url_user)))    
     referer = url_user.get("referer")
     req = urllib2.Request(decoded)
     req.add_header('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36')
@@ -132,7 +136,8 @@ def getfile_freebroadcast(url_user, decoded, body):
 
 # Vamos a capturar el fileserver.php (token del server)
 def get_fileserver(decoded, url_user):
-    plugintools.log("PalcoTV fileserver "+repr(url_user))
+    plugintools.log('[%s %s] get_fileserver %s' % (addonName, addonVersion, repr(url_user)))    
+
     referer=url_user.get("pageurl")
     req = urllib2.Request(decoded)
     req.add_header('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36')

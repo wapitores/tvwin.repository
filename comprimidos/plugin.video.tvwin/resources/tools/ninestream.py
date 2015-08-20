@@ -26,6 +26,11 @@ import json
 import math
 
 
+addonName           = xbmcaddon.Addon().getAddonInfo("name")
+addonVersion        = xbmcaddon.Addon().getAddonInfo("version")
+addonId             = xbmcaddon.Addon().getAddonInfo("id")
+addonPath           = xbmcaddon.Addon().getAddonInfo("path")
+
 home = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.palcotv/', ''))
 tools = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.palcotv/resources/tools', ''))
 addons = xbmc.translatePath(os.path.join('special://home/addons/', ''))
@@ -34,6 +39,7 @@ art = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.palcot
 tmp = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.palcotv/tmp', ''))
 playlists = xbmc.translatePath(os.path.join('special://home/addons/playlists', ''))
 
+
 icon = art + 'icon.png'
 fanart = 'fanart.jpg'
 
@@ -41,7 +47,7 @@ fanart = 'fanart.jpg'
 
 # Función que guía el proceso de elaboración de la URL original
 def ninestreams(params):
-    plugintools.log("[PalcoTV-0.3.0].ninestreams "+repr(params))
+    plugintools.log('[%s %s] ninestream %s' % (addonName, addonVersion, repr(params)))  
     url_user = {}
     
     # Construimos diccionario...
@@ -110,8 +116,7 @@ def ninestreams(params):
 
 
 # Vamos a hacer una llamada al pageUrl
-def gethttp_headers(pageurl, referer):
-      
+def gethttp_headers(pageurl, referer):      
     request_headers=[]
     request_headers.append(["User-Agent","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.65 Safari/537.31"])
     request_headers.append(["Referer",referer])
@@ -124,7 +129,7 @@ def gethttp_headers(pageurl, referer):
 # Iniciamos protocolo de elaboración de la URL original
 # Capturamos parámetros correctos
 def getparams_ninestream(url_user, params, body):
-    plugintools.log("[PalcoTV-0.3.0].getparams_ninestream " + repr(url_user) )
+    plugintools.log('[%s %s] getparams_ninestream %s' % (addonName, addonVersion, repr(url_user)))  
     
     # Construimos el diccionario de 9stream
     plugintools.log("body= "+body)
@@ -156,7 +161,7 @@ def getparams_ninestream(url_user, params, body):
 
 # Vamos a capturar el playpath
 def getfile_ninestream(url_user, decoded, body):
-    plugintools.log("PalcoTV getfile_ninestream( "+repr(url_user))
+    plugintools.log('[%s %s] getfile_ninestream %s' % (addonName, addonVersion, repr(url_user)))  
     referer = url_user.get("referer")
     req = urllib2.Request(decoded)
     req.add_header('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36')
@@ -172,7 +177,7 @@ def getfile_ninestream(url_user, decoded, body):
 
 # Vamos a capturar el fileserver.php (token del server)
 def get_fileserver(decoded, url_user):
-    plugintools.log("PalcoTV fileserver "+repr(url_user))
+    plugintools.log('[%s %s] get_fileserver %s' % (addonName, addonVersion, repr(url_user)))  
     referer=url_user.get("pageurl")
     req = urllib2.Request(decoded)
     req.add_header('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36')

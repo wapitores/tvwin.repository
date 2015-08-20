@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #------------------------------------------------------------
-# PalcoTV Regex de freetvcast
+# Regex de Freetvcast para PalcoTV
 # Version 0.1 (17.10.2014)
 #------------------------------------------------------------
 # License: GPL (http://www.gnu.org/licenses/gpl-3.0.html)
@@ -23,6 +23,10 @@ import xbmcplugin
 
 import plugintools
 
+addonName           = xbmcaddon.Addon().getAddonInfo("name")
+addonVersion        = xbmcaddon.Addon().getAddonInfo("version")
+addonId             = xbmcaddon.Addon().getAddonInfo("id")
+addonPath           = xbmcaddon.Addon().getAddonInfo("path")
 
 home = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.palcotv/', ''))
 tools = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.palcotv/resources/tools', ''))
@@ -32,12 +36,14 @@ art = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.palcot
 tmp = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.palcotv/tmp', ''))
 playlists = xbmc.translatePath(os.path.join('special://home/addons/playlists', ''))
 
+
 icon = art + 'icon.png'
 fanart = 'fanart.jpg'
 
 
+
 def freetvcast(params):
-    plugintools.log("[PalcoTV-0.3.0].resolve_freetvcast " + repr(params) )
+    plugintools.log('[%s %s].Regex Freetvcast %s' % (addonName, addonVersion, repr(params)))        
 
     freetvcast_user = {"rtmp": "" , "playpath":'', "swfurl": "http://freetvcast.pw/player.swf" , "pageurl": "http://freetvcast.pw/", "token":'#ed%h0#w@12Fuck', "live":'True', "timeout":'15', "referer":''}
 

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #------------------------------------------------------------
-# PalcoTV Regex de vercosasgratis.com
+# Regex de Vercosasgratis para PalcoTV
 # Version 0.1 (17.10.2014)
 #------------------------------------------------------------
 # License: GPL (http://www.gnu.org/licenses/gpl-3.0.html)
@@ -25,6 +25,12 @@ import plugintools
 import json
 
 
+
+addonName           = xbmcaddon.Addon().getAddonInfo("name")
+addonVersion        = xbmcaddon.Addon().getAddonInfo("version")
+addonId             = xbmcaddon.Addon().getAddonInfo("id")
+addonPath           = xbmcaddon.Addon().getAddonInfo("path")
+
 home = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.palcotv/', ''))
 tools = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.palcotv/resources/tools', ''))
 addons = xbmc.translatePath(os.path.join('special://home/addons/', ''))
@@ -33,13 +39,14 @@ art = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.palcot
 tmp = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.palcotv/tmp', ''))
 playlists = xbmc.translatePath(os.path.join('special://home/addons/playlists', ''))
 
+
 icon = art + 'icon.png'
 fanart = 'fanart.jpg'
 
 
 # Función que guía el proceso de elaboración de la URL original
 def vercosas(params):
-    plugintools.log("[PalcoTV-0.3.0].Vercosasgratis "+repr(params))
+    plugintools.log('[%s %s] Vercosasgratis %s' % (addonName, addonVersion, repr(params))) 
     url_user = {}
     url_user["token"]='#ed%h0#w@12Fuck'
     
@@ -73,8 +80,7 @@ def vercosas(params):
 
 
 # Vamos a hacer una llamada al pageUrl
-def gethttp_headers(pageurl, referer):
-      
+def gethttp_headers(pageurl, referer):      
     request_headers=[]
     request_headers.append(["User-Agent","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.65 Safari/537.31"])
     request_headers.append(["Referer",referer])
@@ -85,7 +91,7 @@ def gethttp_headers(pageurl, referer):
     
 
 def getparams_vercosas(url_user, body):
-    plugintools.log("[PalcoTV-0.3.0].getparams_vercosas " + repr(url_user) )
+    plugintools.log('[%s %s] getparams_vercosas %s' % (addonName, addonVersion, repr(url_user))) 
 
     # Obtenemos la URL del rtmp y el playpath
     streamer = re.compile('streamer\', \'(.*?)\'\);\n').findall(body)
