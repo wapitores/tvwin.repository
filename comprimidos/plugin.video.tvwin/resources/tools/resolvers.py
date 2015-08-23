@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #------------------------------------------------------------
-# Tvwin - XBMC Add-on by Juarrox (juarrox@gmail.com)
-# Conectores multimedia para Tvwin
+# PalcoTV - XBMC Add-on by Juarrox (juarrox@gmail.com)
+# Conectores multimedia para PalcoTV
 #------------------------------------------------------------
 # License: GPL (http://www.gnu.org/licenses/gpl-3.0.html)
 # Gracias a las librerías de pelisalacarta de Jesús (www.mimediacenter.info)
@@ -56,7 +56,7 @@ def allmyvideos(params):
     # plugintools.log("data= "+data)
 
     if "<b>File Not Found</b>" in data or "<b>Archivo no encontrado</b>" in data or '<b class="err">Deleted' in data or '<b class="err">Removed' in data or '<font class="err">No such' in data:
-        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('Tvwin', "Archivo borrado!", 3 , art+'icon.png'))
+        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('PalcoTV', "Archivo borrado!", 3 , art+'icon.png'))
 
     else:
         # Normaliza la URL
@@ -109,7 +109,7 @@ def streamcloud(params):
 
     # Barra de progreso para la espera de 10 segundos
     progreso = xbmcgui.DialogProgress()
-    progreso.create("Tvwin", "Abriendo Streamcloud..." , url )
+    progreso.create("PalcoTV", "Abriendo Streamcloud..." , url )
 
     i = 13000
     j = 0
@@ -169,9 +169,9 @@ def playedto(params):
     body = body.strip()
     
     if body == "<center>This video has been deleted. We apologize for the inconvenience.</center>":
-        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('Tvwin', "Enlace borrado...", 3 , art+'icon.png'))
+        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('PalcoTV', "Enlace borrado...", 3 , art+'icon.png'))
     elif body.find("Removed for copyright infringement") >= 0:
-        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('Tvwin', "Removed for copyright infringement", 3 , art+'icon.png'))
+        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('PalcoTV', "Removed for copyright infringement", 3 , art+'icon.png'))
     else:
         r = re.findall('file(.+?)\n', body)
 
@@ -183,7 +183,7 @@ def playedto(params):
             plugintools.log("vamos= "+entry)
             if entry.endswith("flv"):
                 plugintools.play_resolved_url(entry)
-                xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('Tvwin', "Resolviendo enlace...", 3 , art+'icon.png'))
+                xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('PalcoTV', "Resolviendo enlace...", 3 , art+'icon.png'))
                 params["url"]=entry
                 plugintools.log("URL= "+entry)
 
@@ -204,7 +204,7 @@ def vidspot(params):
 
     try:
         if body.find("File was deleted") >= 0:
-            xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('Tvwin', "Archivo borrado", 3 , art+'icon.png'))
+            xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('PalcoTV', "Archivo borrado", 3 , art+'icon.png'))
         else:
             r = re.findall('"file" : "(.+?)"', body)
             for entry in r:
@@ -214,7 +214,7 @@ def vidspot(params):
                     params["url"]=url
                     plugintools.log("url= "+url)
                     plugintools.play_resolved_url(url)
-                    xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('Tvwin', "Resolviendo enlace...", 3 , art+'icon.png'))
+                    xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('PalcoTV', "Resolviendo enlace...", 3 , art+'icon.png'))
     except:
             pass
 
@@ -231,7 +231,7 @@ def vk(params):
     plugintools.log("data= "+data)
 
     if "This video has been removed from public access" in data:
-        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('Tvwin', "Archivo borrado!", 3 , art+'icon.png'))
+        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('PalcoTV', "Archivo borrado!", 3 , art+'icon.png'))
     else:
         #data = scrapertools.cache_page(page_url.replace("amp;",""))
         data = plugintools.read(page_url.replace("amp;",""))
@@ -345,9 +345,9 @@ def nowvideo(params):
     #data = data.replace("amp;", "")
     
     if "The file is being converted" in data:
-        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('Tvwin', "El archivo está en proceso", 3 , art+'icon.png'))
+        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('PalcoTV', "El archivo está en proceso", 3 , art+'icon.png'))
     elif "no longer exists" in data:
-        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('Tvwin', "El archivo ha sido borrado", 3 , art+'icon.png'))        
+        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('PalcoTV', "El archivo ha sido borrado", 3 , art+'icon.png'))        
     else:
         #plugintools.log("data= "+data)
         domain = plugintools.find_single_match(data, 'flashvars.domain="([^"]+)')
@@ -367,7 +367,7 @@ def nowvideo(params):
         #plugintools.log("token= "+token)
         
         if video_id == "":
-            xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('Tvwin', "Error!", 3 , art+'icon.png'))
+            xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('PalcoTV', "Error!", 3 , art+'icon.png'))
         else:
             #http://www.nowvideo.sx/api/player.api.php?user=undefined&pass=undefined&cid3=undefined&numOfErrors=0&cid2=undefined&key=83%2E47%2E1%2E12%2D8d68210314d70fb6506817762b0d495e&file=b5c8c44fc706f&cid=1
             url = 'http://www.nowvideo.sx/api/player.api.php?user=undefined&pass=undefined&cid3=undefined&numOfErrors=0&cid2=undefined&key=' + token + '&file=' + video_id + '&cid=1'
@@ -388,9 +388,9 @@ def nowvideo(params):
                 print 'body',body
                 url = body[0]
                 plugintools.play_resolved_url(url)
-                xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('Tvwin', "Cargando vídeo...", 1 , art+'icon.png'))
+                xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('PalcoTV', "Cargando vídeo...", 1 , art+'icon.png'))
             else:
-                xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('Tvwin', "Error!", 3 , art+'icon.png'))                
+                xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('PalcoTV', "Error!", 3 , art+'icon.png'))                
 
          
 ''' En el navegador...
@@ -412,7 +412,7 @@ def tumi(params):
     data = scrapertools.cache_page(page_url)
     
     if "Video is processing now" in data:
-        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('Tvwin', "El archivo está en proceso", 3 , art+'icon.png'))       
+        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('PalcoTV', "El archivo está en proceso", 3 , art+'icon.png'))       
     else:
         try:
             x = scrapertools.find_single_match(data, "\|type\|(.*?)\|file\|").replace("||","|").split("|")
@@ -437,7 +437,7 @@ def veehd(params):
     uname = plugintools.get_setting("veehd_user")
     pword = plugintools.get_setting("veehd_pword")
     if uname == '' or pword == '':
-        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('Tvwin', "Debes configurar el identificador para Veehd.com", 3 , art+'icon.png'))
+        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('PalcoTV', "Debes configurar el identificador para Veehd.com", 3 , art+'icon.png'))
         return
     
     url = params.get("url")
@@ -455,9 +455,9 @@ def veehd(params):
     
     if not vpi:
         if 'type="submit" value="Login" name="submit"' in body:
-            xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('Tvwin', "Error al identificarse en Veehd.com", 3 , art+'icon.png'))
+            xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('PalcoTV', "Error al identificarse en Veehd.com", 3 , art+'icon.png'))
         else:
-            xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('Tvwin', "Error buscando el video en Veehd.com", 3 , art+'icon.png'))            
+            xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('PalcoTV', "Error buscando el video en Veehd.com", 3 , art+'icon.png'))            
         return
     
     req = urllib2.Request('http://veehd.com/'+vpi)
@@ -488,7 +488,7 @@ def veehd(params):
         video_url = urllib.unquote(plugintools.find_single_match(body, 'type="video/divx"\s+src="(.+?)"'))
 
     if not video_url:
-        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('Tvwin', "Error abriendo el video en Veehd.com", 3 , art+'icon.png'))
+        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('PalcoTV', "Error abriendo el video en Veehd.com", 3 , art+'icon.png'))
         return
 
     plugintools.log("video_url= "+video_url)
@@ -585,7 +585,7 @@ def mediafire(params):
     data = plugintools.read(url)
 
     # Espera un segundo y vuelve a cargar
-    plugintools.log("[Tvwin] Espere un segundo...")
+    plugintools.log("[PalcoTV] Espere un segundo...")
     import time
     time.sleep(1)
     data = plugintools.read(url)
@@ -632,9 +632,9 @@ def novamov(params):
     # Comprobamos que existe el vídeo
     data = scrapertools.cache_page(page_url)    
     if "This file no longer exists on our servers" in data:
-        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('Tvwin', "No existe vídeo en Novamov", 3 , art+'icon.png'))
+        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('PalcoTV', "No existe vídeo en Novamov", 3 , art+'icon.png'))
     elif "is being converted" in data:
-        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('Tvwin', "Vídeo no disponible", 3 , art+'icon.png'))
+        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('PalcoTV', "Vídeo no disponible", 3 , art+'icon.png'))
 
     plugintools.log("[novamov.py] get_video_url(page_url='%s')" % page_url)
 
@@ -663,7 +663,7 @@ def gamovideo(params):
     data = scrapertools.cache_page( page_url , headers=headers )
     
     if "is no longer available" in data:
-        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('Tvwin', "Archivo borrado!", 3 , art+'icon.png'))
+        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('PalcoTV', "Archivo borrado!", 3 , art+'icon.png'))
     else:
         headers = [['User-Agent','Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14']]
         data = scrapertools.cache_page( page_url , headers=headers )
@@ -754,7 +754,7 @@ def moevideos(params):
         data = scrapertools.cache_page(url,headers=headers2,post=post)
         plugintools.log("data="+data)
         if ',"not_found"' in data:
-            xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('Tvwin', "Archivo borrado!", 3 , art+'icon.png'))
+            xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('PalcoTV', "Archivo borrado!", 3 , art+'icon.png'))
         else:
             data = data.replace("\\","")
             plugintools.log("data="+data)
@@ -776,7 +776,7 @@ def movshare(params):
     data = scrapertools.cache_page(page_url)
     
     if "This file no longer exists on our servers" in data:
-        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('Tvwin', "Archivo borrado!", 3 , art+'icon.png'))
+        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('PalcoTV', "Archivo borrado!", 3 , art+'icon.png'))
     else:
         videoid = scrapertools.get_match(page_url,"http://www.movshare.net/video/([a-z0-9]+)")
         video_urls = []
@@ -849,7 +849,7 @@ def videobam(params):
     videourl = ""
     match = ""
     if "Video is processing" in data:
-        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('Tvwin', "Archivo no disponible temporalmente!", 3 , art+'icon.png'))
+        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('PalcoTV', "Archivo no disponible temporalmente!", 3 , art+'icon.png'))
     else:
         patronHD = " high: '([^']+)'"
         matches = re.compile(patronHD,re.DOTALL).findall(data)

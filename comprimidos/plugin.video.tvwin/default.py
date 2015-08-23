@@ -25,32 +25,9 @@ import urllib,urllib2,re,xbmcplugin,xbmcgui,xbmc,xbmcaddon,HTMLParser,os,sys,tim
 h = HTMLParser.HTMLParser()
 
 from resources.tools.resolvers import *
-from resources.tools.update import *
-from resources.tools.vaughnlive import *
-from resources.tools.ninestream import *
-from resources.tools.vercosas import *
-from resources.tools.directwatch import *
-from resources.tools.freetvcast import *
-from resources.tools.freebroadcast import *
-from resources.tools.shidurlive import *
-from resources.tools.updater import *
-from resources.tools.castalba import *
-from resources.tools.castdos import *
-from resources.tools.updater import *
-from resources.tools.streamingfreetv import *
-from resources.tools.dailymotion import *
-
-from resources.tools.getposter import *
 from resources.tools.yt_playlist import *
 from resources.tools.seriesflv import *
 from resources.tools.pelisyaske import *
-from resources.tools.seriesblanco import *
-from resources.tools.seriesmu import *
-
-from resources.tools.sawlive import *
-from resources.tools.goear import *
-from resources.tools.moviedb import *
-from resources.tools.mundoplus import *
 from resources.tools.server import *
 
 
@@ -452,18 +429,18 @@ def simpletv_items(params):
                         if busqueda == 'search.txt':                            
                             url = url.replace("serie:", "")
                             params["fanart"] = fanart
-                            if url.find("www.yaske.cc") >= 0:
+                            if url.find("http://pacific1469.serverprofi24.eu:32400/library/sections/5/") >= 0:
                                 plugintools.add_item( action = "seriecatcher" , title = '[COLOR white]' + title + ' [COLOR lightgreen][B][Series[/B]adicto][/COLOR][COLOR white][I] (' + origen + ')[/I][/COLOR]', url = url , thumbnail = thumbnail , fanart = fanart , folder = True , isPlayable = False )
                                 data = file.readline()
                                 i = i + 1
                                 continue
-                            elif url.find("seriesflv") >= 0:
-                                plugintools.add_item( action = "lista_capis" , title =  + title +  origen , url = url , thumbnail = thumbnail , fanart = fanart , folder = True , isPlayable = False )
+                            elif url.find("http://pacific1469.serverprofi24.eu:32400/library/sections/3/") >= 0:
+                                plugintools.add_item( action = "url_play13" , title =  + title +  origen , url = url , thumbnail = thumbnail , fanart = fanart , folder = True , isPlayable = False )
                                 data = file.readline()
                                 i = i + 1
                                 continue
-                            elif url.find("peliculasaudiolatino") >= 0:
-                                plugintools.add_item( action = "pelis0" , title = '[COLOR white]' + title + ' [COLOR lightgreen][B][Series[/B]Yonkis][/COLOR][COLOR white][I] (' + origen + ')[/I][/COLOR]', url = url , thumbnail = thumbnail , fanart = fanart , folder = True , isPlayable = False )
+                            elif url.find("http://pacific1469.serverprofi24.eu:32400/library/sections/1/") >= 0:
+                                plugintools.add_item( action = "url_play13" , title = '[COLOR white]' + title + ' [COLOR lightgreen][B][Series[/B]Yonkis][/COLOR][COLOR white][I] (' + origen + ')[/I][/COLOR]', url = url , thumbnail = thumbnail , fanart = fanart , folder = True , isPlayable = False )
                                 data = file.readline()
                                 i = i + 1
                                 continue
@@ -472,8 +449,8 @@ def simpletv_items(params):
                                 data = file.readline()
                                 i = i + 1
                                 continue
-                            elif url.find("peliculasaudiolatino") >= 0:
-                                plugintools.add_item( action = "pelis0" , title = '[COLOR white]' + title + ' [COLOR lightgreen][B][Series[/B].Mu][/COLOR][COLOR white][I] (' + origen + ')[/I][/COLOR]', url = url , thumbnail = thumbnail , fanart = fanart , folder = True , isPlayable = False )
+                            elif url.find("http://pacific1469.serverprofi24.eu:32400/library/sections/1/") >= 0:
+                                plugintools.add_item( action = "url_play13" , title = '[COLOR white]' + title + ' [COLOR lightgreen][B][Series[/B].Mu][/COLOR][COLOR white][I] (' + origen + ')[/I][/COLOR]', url = url , thumbnail = thumbnail , fanart = fanart , folder = True , isPlayable = False )
                                 data = file.readline()
                                 i = i + 1
                                 continue                              
@@ -483,18 +460,18 @@ def simpletv_items(params):
                         else:
                             url = url.replace("serie:", "")
                             params["fanart"] = fanart
-                            if url.find("www.yaske.cc") >= 0:
+                            if url.find("http://pacific1469.serverprofi24.eu:32400/library/sections/5/") >= 0:
                                 plugintools.add_item( action = "seriecatcher" , title = title , url = url , thumbnail = thumbnail , show = show, fanart = fanart , folder = True , isPlayable = False )
                                 data = file.readline()
                                 i = i + 1
                                 continue
-                            elif url.find("seriesflv") >= 0:
-                                plugintools.add_item( action = "lista_capis" , title =  title  , url = url , thumbnail = thumbnail , fanart = fanart , folder = True , isPlayable = False )
+                            elif url.find("http://pacific1469.serverprofi24.eu:32400/library/sections/3/") >= 0:
+                                plugintools.add_item( action = "url_play13" , title =  title  , url = url , thumbnail = thumbnail , fanart = fanart , folder = True , isPlayable = False )
                                 data = file.readline()
                                 i = i + 1
                                 continue
-                            elif url.find("peliculasaudiolatino") >= 0:
-                                plugintools.add_item( action = "pelis0" , title =  title , url = url , thumbnail = thumbnail , fanart = fanart , folder = True , isPlayable = False )
+                            elif url.find("http://pacific1469.serverprofi24.eu:32400/library/sections/1/") >= 0:
+                                plugintools.add_item( action = "url_play12" , title =  title , url = url , thumbnail = thumbnail , fanart = fanart , folder = True , isPlayable = False )
                                 data = file.readline()
                                 i = i + 1
                                 continue
@@ -503,8 +480,8 @@ def simpletv_items(params):
                                 data = file.readline()
                                 i = i + 1
                                 continue
-                            elif url.find("peliculasaudiolatino") >= 0:
-                                plugintools.add_item( action = "pelis0" , title = '[COLOR white]' + title + ' [COLOR lightgreen][B][Series[/B].Mu][/COLOR]', url = url , thumbnail = thumbnail , fanart = fanart , folder = True , isPlayable = False )
+                            elif url.find("http://pacific1469.serverprofi24.eu:32400/library/sections/1/all?X-Plex-Token=yK9PAhXdNKo3ywoDx9b7") >= 0:
+                                plugintools.add_item( action = "url_play13" , title = '[COLOR white]' + title + ' [COLOR lightgreen][B][Series[/B].Mu][/COLOR]', url = url , thumbnail = thumbnail , fanart = fanart , folder = True , isPlayable = False )
                                 data = file.readline()
                                 i = i + 1
                                 continue                               
@@ -2210,41 +2187,41 @@ def playlists_m3u(params):  # Biblioteca online
     name_channel = params.get("plot")
     pattern = '<name>'+name_channel+'(.*?)</channel>'
     data = plugintools.find_single_match(data, pattern)
-    online = '[COLOR yellowgreen][I][Auto][/I][/COLOR]'
-    params["ext"] = 'm3u'
-    plugintools.add_item( action="" , title=''+name_channel+'' , thumbnail= art + 'icon.png' , folder = False , isPlayable = False )
+    online = ''
+    params["ext"] = 'TvWin'
+    plugintools.add_item( action="" , title=''+name_channel+'' , thumbnail = art + 'icon.png' , folder = False , isPlayable = False )
     subchannel = re.compile('<subchannel>([^<]+)<name>([^<]+)</name>([^<]+)<thumbnail>([^<]+)</thumbnail>([^<]+)<url>([^<]+)</url>([^<]+)</subchannel>').findall(data)
     # Sustituir por una lista!!!
     for biny, ciny, diny, winy, pixy, dixy, boxy in subchannel:
-        if ciny == "Vcx7 IPTV":
-            plugintools.add_item( action="getfile_http" , plot = ciny , title = '[COLOR lightyellow]' + ciny + '[/COLOR] ' + online , url= dixy , thumbnail = art + winy , fanart = art + 'fanart.jpg' , folder = True , isPlayable = False )
-            params["ext"] = "m3u"
+        if ciny == "Television calidad estandar mexico":
+            plugintools.add_item( action="getfile_http" , plot = ciny , title = ciny , url= dixy , thumbnail = winy , fanart = art + 'fanart.jpg' , folder = True , isPlayable = False )
+            params["ext"] = "TvWin"
             title = ciny
             params["title"]=title
-        elif ciny == "Largo Barbate M3U":
-            plugintools.add_item( action="getfile_http" , plot = ciny , title = '[COLOR lightyellow]' + ciny + '[/COLOR] ' + online , url= dixy , thumbnail = art + winy , fanart = art + 'fanart.jpg' , folder = True , isPlayable = False )
+        elif ciny == "Television internacional en contruccion":
+            plugintools.add_item( action="getfile_http" , plot = ciny , title = ciny , url= dixy , thumbnail = winy , fanart = art + 'fanart.jpg' , folder = True , isPlayable = False )
             title = ciny
             params["title"]=title
-        elif ciny == "XBMC Mexico":
-            plugintools.add_item( action="getfile_http" , plot = ciny , title = '[COLOR lightyellow]' + ciny + '[/COLOR] ' + online , url= dixy , thumbnail = art + winy , fanart = art + 'fanart.jpg' , folder = True , isPlayable = False )
+        elif ciny == "Peliculas":
+            plugintools.add_item( action="getfile_http" , plot = ciny , title = ciny , url= dixy , thumbnail = winy , fanart = art + 'fanart.jpg' , folder = True , isPlayable = False )
             title = ciny
             params["title"]=title
         elif ciny == "allSat":
-            plugintools.add_item( action="getfile_http" , plot = ciny , title = '[COLOR lightyellow]' + ciny + '[/COLOR] ' + online , url= dixy , thumbnail = art + winy , fanart = art + 'fanart.jpg' , folder = True , isPlayable = False )
+            plugintools.add_item( action="getfile_http" , plot = ciny , title =  ciny , url= dixy , thumbnail = winy , fanart = art + 'fanart.jpg' , folder = True , isPlayable = False )
             title = ciny
             params["title"]=title
         elif ciny == "AND Wonder":
-            plugintools.add_item( action="getfile_http" , plot = ciny , title = '[COLOR lightyellow]' + ciny + '[/COLOR] ' + online , url= dixy , thumbnail = art + winy , fanart = art + 'fanart.jpg' , folder = True , isPlayable = False )
+            plugintools.add_item( action="getfile_http" , plot = ciny , title = '[COLOR lightyellow]' + ciny + '[/COLOR] ' + online , url= dixy , thumbnail = winy , fanart = art + 'fanart.jpg' , folder = True , isPlayable = False )
             title = ciny
             params["title"]=title
         elif ciny == "FenixTV":
-            plugintools.add_item( action="getfile_http" , plot = ciny , title = '[COLOR lightyellow]' + ciny + '[/COLOR] ' + online , url= dixy , thumbnail = art + winy , fanart = art + 'fanart.jpg' , folder = True , isPlayable = False )
+            plugintools.add_item( action="getfile_http" , plot = ciny , title = '[COLOR lightyellow]' + ciny + '[/COLOR] ' + online , url= dixy , thumbnail = winy , fanart = art + 'fanart.jpg' , folder = True , isPlayable = False )
             title = ciny
             params["title"]=title
         else:
             plot = ciny.split("[")
             plot = plot[0]
-            plugintools.add_item( action="getfile_http" , plot = plot , title = '[COLOR lightyellow]' + ciny + '[/COLOR] ' , url= dixy , thumbnail = art + winy , fanart = art + 'fanart.jpg' , folder = True , isPlayable = False )
+            plugintools.add_item( action="getfile_http" , plot = plot , title = '[COLOR lightyellow]' + ciny + '[/COLOR] ' , url= dixy , thumbnail = winy , fanart = art + 'fanart.jpg' , folder = True , isPlayable = False )
 
     plugintools.log('[%s %s].playlists_m3u %s' % (addonName, addonVersion, repr(params)))    
 
