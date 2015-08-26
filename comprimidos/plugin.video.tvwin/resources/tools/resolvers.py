@@ -21,7 +21,7 @@ import xbmc
 import xbmcgui
 import xbmcaddon
 import xbmcplugin
-import scrapertools, plugintools, unwise, unpackerjs
+import scrapertools, plugintools
 
 addonName           = xbmcaddon.Addon().getAddonInfo("name")
 addonVersion        = xbmcaddon.Addon().getAddonInfo("version")
