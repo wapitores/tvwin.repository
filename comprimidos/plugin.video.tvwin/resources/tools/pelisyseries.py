@@ -32,7 +32,7 @@ addonId             = xbmcaddon.Addon().getAddonInfo("id")
 addonPath           = xbmcaddon.Addon().getAddonInfo("path")
 
 music = 'http://3.bp.blogspot.com/-nTyqSSBdeDo/TujJSjNyYuI/AAAAAAAACbU/IqffXgbfpZo/s1600/megapost_peliculas.png'
-referer = 'http://pacific1469.serverprofi24.eu:32400/'
+referer = 'http://pacific1469.serverprofi24.eu:32400/library/sections/5/all?X-Plex-Token=yK9PAhXdNKo3ywoDx9b7'
 pel = 'http://k32.kn3.net/taringa/D/7/6/7/5/0/niad/E10.jpg'
 pel2 = 'http://images6.alphacoders.com/405/405735.jpg'
 ser = 'http://pacific1469.serverprofi24.eu:32400'
@@ -49,7 +49,7 @@ def seriecatcher(params):
     
 	
     url = params.get("url")
-    referer = 'http://pacific1469.serverprofi24.eu:32400/'
+    referer = 'http://pacific1469.serverprofi24.eu:32400/library/sections/5/all?X-Plex-Token=yK9PAhXdNKo3ywoDx9b7'
     data = gethttp_referer_headers(url,referer)
     plugintools.log("data= "+data)
     matches = plugintools.find_multiple_matches(data, '<Directory(.*?)</Directory>')
