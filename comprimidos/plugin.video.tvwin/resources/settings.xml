@@ -3,7 +3,7 @@
 
 	<category label="General">
 		<setting label="Vídeo De Intro " type="lsep" />
-		<setting id="ver_intro" type="bool" label="Mostrar al inicio" default="true"/>
+		<setting id="ver_intro" type="bool" label="Mostrar al inicio" default="false"/>
 		
 		<setting label="Resolucion Personalizada o Activar Tu Id De Usuario" type="lsep" />
 		<setting id="xmlmaster" type="bool" label="Activar o desactivar Opciones" default="false"/>
