@@ -25,7 +25,7 @@ from resources.tools.resolvers import *
 from resources.tools.yt_playlist import *
 from resources.tools.seriesflv import *
 from resources.tools.pelisyseries import *
-
+from resources.tools.seriesretro import *
 
 
 
@@ -398,12 +398,12 @@ def simpletv_items(params):
                         if busqueda == 'search.txt':                            
                             url = url.replace("serie:", "")
                             params["fanart"] = fanart
-                            if url.find("http://pacific1469.serverprofi24.eu:32400/library/sections/5/") >= 0:
-                                plugintools.add_item( action = "seriecatcher" , title = '[COLOR white]' + title + ' [COLOR lightgreen][B][Series[/B]adicto][/COLOR][COLOR white][I] (' + origen + ')[/I][/COLOR]', url = url , thumbnail = thumbnail , fanart = fanart , folder = True , isPlayable = False )
+                            if url.find("") >= 0:
+                                plugintools.add_item( action = "" , title = '[COLOR white]' + title + ' [COLOR lightgreen][B][Series[/B]adicto][/COLOR][COLOR white][I] (' + origen + ')[/I][/COLOR]', url = url , thumbnail = thumbnail , fanart = fanart , folder = True , isPlayable = False )
                                 data = file.readline()
                                 i = i + 1
                                 continue
-                            elif url.find("http://pacific1469.serverprofi24.eu:32400/library/sections/3/") >= 0:
+                            elif url.find("") >= 0:
                                 plugintools.add_item( action = "url_play13" , title =  + title +  origen , url = url , thumbnail = thumbnail , fanart = fanart , folder = True , isPlayable = False )
                                 data = file.readline()
                                 i = i + 1
@@ -429,8 +429,8 @@ def simpletv_items(params):
                         else:
                             url = url.replace("serie:", "")
                             params["fanart"] = fanart
-                            if url.find("http://pacific1469.serverprofi24.eu:32400/library/sections/5/") >= 0:
-                                plugintools.add_item( action = "seriecatcher" , title = title , url = url , thumbnail = thumbnail , show = show, fanart = fanart , folder = True , isPlayable = False )
+                            if url.find("http://youanimehd.com") >= 0:
+                                plugintools.add_item( action = "pelisya" , title = title , url = url , thumbnail = thumbnail , show = show, fanart = fanart , folder = True , isPlayable = False )
                                 data = file.readline()
                                 i = i + 1
                                 continue
@@ -2142,15 +2142,15 @@ def playlists_m3u(params):  # Biblioteca online
             title = ciny
             params["title"]=title
         elif ciny == "Peliculas2":
-            plugintools.add_item( action="url_play12" , plot = ciny , title = '[COLOR lightyellow]' + ciny + '[/COLOR] ' + online , url= dixy , thumbnail = winy , fanart = art + 'fanart.jpg' , folder = True , isPlayable = False )
+            plugintools.add_item( action="url_play12" , plot = ciny , title = ciny , url= dixy , thumbnail = winy , fanart = art + 'fanart.jpg' , folder = True , isPlayable = False )
             title = ciny
             params["title"]=title
         elif ciny == "Peliculas xxx":
-            plugintools.add_item( action="url_play12" , plot = ciny , title = '[COLOR lightyellow]' + ciny + '[/COLOR] ' + online , url= dixy , thumbnail = winy , fanart = art + 'fanart.jpg' , folder = True , isPlayable = False )
+            plugintools.add_item( action="url_play12" , plot = ciny , title = ciny  , url= dixy , thumbnail = winy , fanart = art + 'fanart.jpg' , folder = True , isPlayable = False )
             title = ciny
             params["title"]=title
-        elif ciny == "Series Infantiles":
-            plugintools.add_item( action="seriecatcher" , plot = ciny , title = '[COLOR lightyellow]' + ciny + '[/COLOR] ' + online , url= dixy , thumbnail = winy , fanart = art + 'fanart.jpg' , folder = True , isPlayable = False )
+        elif ciny == "Series Retro":
+            plugintools.add_item( action="getfile_http" , plot = ciny , title = ciny  , url= dixy , thumbnail = winy , fanart = art + 'fanart.jpg' , folder = True , isPlayable = False )
             title = ciny
             params["title"]=title
         else:
