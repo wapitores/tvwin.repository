@@ -1,6 +1,6 @@
 ﻿# -*- coding: utf-8 -*-
 #------------------------------------------------------------
-# tvwin - XBMC Add-on by 19hdz19
+# tvwin - XBMC Add-on 
 # Version 0.1.0 (18.07.2014)
 #------------------------------------------------------------
 # License: GPL (http://www.gnu.org/licenses/gpl-3.0.html)
@@ -38,13 +38,15 @@ fanart = 'fanart.jpg'
 def vk(params):
     plugintools.log("[tvwin-0.1.0].vk " + repr(params))
 
-    # http://vk.com/video_ext.php?oid=238208017&id=169663934&hash=1fc3ef827b751943&hd=1
+    
 
     data = plugintools.read(params.get("url"))
     data = data.replace("amp;", "")
     
     if "This video has been removed from public access" in data:
-        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('TvWin', "El archivo ya no está disponible", 3 , art+'s.png'))
+        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('TvWin', "El archivo no está disponible", 3 , art+'s.png'))
+    elif "Embedding video of the given user or the group on external sites is prohibited due to copyrighting infringement or pornographic content" in data:
+        xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('TvWin', "El archivo no está disponible", 3 , art+'s.png'))
     else:
         match = plugintools.find_single_match(data, '<param name="flashvars"(.*?)</param>')
         plugintools.log("match= "+match)
@@ -69,7 +71,7 @@ def vk(params):
         url_sintax = video_host + video_uid + '/video/' + video_vtag
         plugintools.log("url_sintax= "+url_sintax)
 
-        # Control para el caso en que no se encuentren los parámetros por "Acceso prohibido o restringido"
+        
         if url_sintax == "/video":
             xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % ('TvWin', "El archivo ya no está disponible", 3 , art+'s.png'))
         else:            
