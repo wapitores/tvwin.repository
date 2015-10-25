@@ -46,7 +46,7 @@ def seriesretro(params):
     
 	
     url = params.get("url")
-    referer = 'http://youanimehd.com/video/231/Coraje-el-perro-cobarde'
+    referer = 'http://youanimehd.com/video/'
     data = gethttp_referer_headers(url,referer)
     plugintools.log("data= "+data)
     matches = plugintools.find_multiple_matches(data, '<ul class="sc_menu">(.*?)</ul></div>')

@@ -986,7 +986,7 @@ def simpletv_items(params):
                                 continue
                             #channel
                             else:
-                                plugintools.add_item( action = "play" , title = '[COLOR blue][I]' + cat + ' / [/I][/COLOR]' + title  , url = url , plot = "", info_labels = "" , extra = "" , show = "" , thumbnail = thumbnail , fanart = fanart , folder = False , isPlayable = True )                                
+                                plugintools.add_item( action = "xtvexpant" , title = '[COLOR blue][I]' + cat + ' / [/I][/COLOR]' + title  , url = url , plot = "", info_labels = "" , extra = "" , show = "" , thumbnail = thumbnail , fanart = fanart , folder = False , isPlayable = True )                                
                                 data = file.readline()
                                 i = i + 1
                                 continue
@@ -1410,12 +1410,19 @@ def simpletv_items(params):
                                 i = i + 1
                                 continue
 
-                            elif url.find("oneplay.tv/") >= 0:
+                            elif url.find("http://xtv-arxk.rhcloud.com/live_stalker") >= 0:
                                 #plugintools.add_item( action = "one2" , title = '[COLOR white]' + title + ' [COLOR red][Oneplay][/COLOR]', plot = plot , url = url , thumbnail = thumbnail , show = show, fanart = fanart , folder = False , isPlayable = True )
-                                plugintools.add_item( action = "play" , title = title , plot = plot , url = url , thumbnail = thumbnail , show = show, fanart = fanart , folder = False , isPlayable = True )
+                                plugintools.add_item( action = "xtvexpant" , title = title , plot = plot , url = url , thumbnail = thumbnail , show = show, fanart = fanart , folder = False , isPlayable = True )
                                 data = file.readline()
                                 i = i + 1
-                                continue                             
+                                continue  
+							
+                            elif url.find("eeeee") >= 0:
+                                #plugintools.add_item( action = "one2" , title = '[COLOR white]' + title + ' [COLOR red][Oneplay][/COLOR]', plot = plot , url = url , thumbnail = thumbnail , show = show, fanart = fanart , folder = False , isPlayable = True )
+                                plugintools.add_item( action = "" , title = title , plot = plot , url = url , thumbnail = thumbnail , show = show, fanart = fanart , folder = False , isPlayable = True )
+                                data = file.readline()
+                                i = i + 1
+                                continue 
                             
                             elif url.endswith("m3u8") == True:
                                 title = title.split('"')
@@ -2151,6 +2158,10 @@ def playlists_m3u(params):  # Biblioteca online
             title = ciny
             params["title"]=title
         elif ciny == "Series Cartoon Retro":
+            plugintools.add_item( action="getfile_http" , plot = ciny , title = ciny  , url= dixy , thumbnail = winy , fanart = art + 'fanart.jpg' , folder = True , isPlayable = False )
+            title = ciny
+            params["title"]=title
+        elif ciny == "Television adultos":
             plugintools.add_item( action="getfile_http" , plot = ciny , title = ciny  , url= dixy , thumbnail = winy , fanart = art + 'fanart.jpg' , folder = True , isPlayable = False )
             title = ciny
             params["title"]=title
@@ -3558,7 +3569,18 @@ def xml_skin():
     return mastermenu
 
 
-
+def xtvexpant(params):
+    plugintools.log('[%s %s].xtvexpant %s' % (addonName, addonVersion, repr(params)))
+    url = params.get("url")
+    url_getlink = 'http://wheredoesthislinkgo.com'
+    plugintools.log("url_getlink= "+url_getlink)
+    post = 'ShortenedUri=' + url
+    post = post.replace('&', "%26")
+    plugintools.log("post= "+post)
+    data,response_headers = plugintools.read_body_and_headers(url_getlink, post=post)
+    longurl = plugintools.find_single_match(data, 'expands to <a href="(.*?)">')
+    plugintools.log("longurl "+longurl)
+    plugintools.play_resolved_url(longurl)
 
 
 
