@@ -1417,9 +1417,9 @@ def simpletv_items(params):
                                 i = i + 1
                                 continue  
 							
-                            elif url.find("eeeee") >= 0:
+                            elif url.find("http://twwin.esy.es/") >= 0:
                                 #plugintools.add_item( action = "one2" , title = '[COLOR white]' + title + ' [COLOR red][Oneplay][/COLOR]', plot = plot , url = url , thumbnail = thumbnail , show = show, fanart = fanart , folder = False , isPlayable = True )
-                                plugintools.add_item( action = "" , title = title , plot = plot , url = url , thumbnail = thumbnail , show = show, fanart = fanart , folder = False , isPlayable = True )
+                                plugintools.add_item( action = "xtvexpant" , title = title , plot = plot , url = url , thumbnail = thumbnail , show = show, fanart = fanart , folder = False , isPlayable = True )
                                 data = file.readline()
                                 i = i + 1
                                 continue 

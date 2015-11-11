@@ -40,13 +40,13 @@ ser2 = 'http://pacific1469.serverprofi24.eu:32400/library/parts/'
 token = '?X-Plex-Token=yK9PAhXdNKo3ywoDx9b7'
 
 art = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.tvwin/art', ''))
-
+TV_SHOWS = "tvshows"
 
 
 
 def seriecatcher(params):
     plugintools.log('[%s %s] seriecatcher %s' % (addonName, addonVersion, repr(params)))
-    
+    plugintools.set_view(TV_SHOWS)
 	
     url = params.get("url")
     referer = 'http://pacific1469.serverprofi24.eu:32400/library/sections/5/all?X-Plex-Token=yK9PAhXdNKo3ywoDx9b7'
@@ -63,13 +63,15 @@ def seriecatcher(params):
         plugintools.log("url= "+url)
         fondo = plugintools.find_single_match(entry, 'thumb="([^"]+)"')
         fondo = ser + fondo + token 
-        plugintools.add_item(action="series", title = title , thumbnail = fondo , url = url , fanart = cover , folder = True , isPlayable = False)
+        plot = plugintools.find_single_match(entry, 'summary="([^"]+)"')
+        plugintools.add_item(action="series", title = title , plot = plot , thumbnail = fondo , url = url , fanart = cover ,  info_labels = None , folder = True , isPlayable = False)
     
 	
 
 
 def series(params):
    plugintools.log('[%s %s] series %s' % (addonName, addonVersion, repr(params)))  
+   plugintools.set_view(TV_SHOWS)
    url = params.get("url")
    referer = url
    data = gethttp_referer_headers(url,referer)  
@@ -83,7 +85,8 @@ def series(params):
     mini_url = ser + mini_url + token
     plugintools.log("mini_url= "+mini_url)
     server_title = plugintools.find_single_match(entry, 'title="([^"]+)"')
-    plugintools.add_item(action="url_play13", title = server_title , thumbnail = mini_url , url = server_url2 , fanart = pel, folder = True, isPlayable = False)
+    plot = plugintools.find_single_match(entry, 'summary="([^"]+)"')
+    plugintools.add_item(action="url_play13", title = server_title , plot = plot , thumbnail = mini_url , url = server_url2 , fanart = mini_url , info_labels = None , folder = True, isPlayable = False)
     
 
 def url_play12(params):
@@ -114,7 +117,7 @@ def url_play13(params):
     play32 = ser2 + play32 + token
     tum = plugintools.find_single_match(entry, 'thumb="([^"]+)"')
     tum = ser + tum + token
-    plugintools.add_item(action="play2", title = url2 , thumbnail = tum , url = play32 , fanart = music , folder = False , isPlayable = 	True)	
+    plugintools.add_item(action="play2", title = url2 , thumbnail = tum , url = play32 , fanart = tum , folder = False , isPlayable = 	True)	
 	
 	
 def play2(params):    
