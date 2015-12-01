@@ -27,7 +27,7 @@ from resources.tools.seriesflv import *
 from resources.tools.pelisyseries import *
 from resources.tools.seriesretro import *
 from resources.tools.vk import *
-
+from resources.tools.music import *
 
 
 
