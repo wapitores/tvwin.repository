@@ -1,3 +1,0 @@
-#EXTINF:-1,Canal 5 HD (Latino)"Cable Latino By DMO.m3u
-https://ott.totalplay.com.mx/TPHLSWeb/M3U8LiveFile?format=2&profile=49&lan=2&rows=40&f=.m3u8
-
